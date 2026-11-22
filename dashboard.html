@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Dashboard Solution - Exercise 1 | Web Engineering Lab 08</title>
+  <link rel="stylesheet" href="dashboard_style.css">
+</head>
+<body>
+
+  <!-- Navigation bar to easily return to E-commerce gallery or line-based layout -->
+  <div class="top-nav">
+    <div>
+      <strong>Web Engineering Lab 08:</strong> Guided Exercise 1 (Grid Template Areas)
+    </div>
+    <div>
+      <a href="Ecommerce_header.html">&larr; Back to Lab Task 1 (E-Commerce Gallery)</a> |
+      <a href="dashboard_line_based.html">View Approach 2 (Line-Based) &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Exercise 1 Grid Container (As in Lab Manual Page 2-3) -->
+  <div class="dashboard-container">
+    <header class="header">Header &amp; Navbar</header>
+    <aside class="sidebar">Sidebar Navigation</aside>
+    <main class="main-content">
+      <h2>Main Analytics Content Area</h2>
+      <p style="margin-top: 10px; color: #555;">
+        This layout demonstrates <strong>CSS Grid Template Areas</strong> with three columns (<code>240px 1fr 1fr</code>)
+        and four rows (<code>70px minmax(300px, auto) 180px 50px</code>).
+      </p>
+      <p style="margin-top: 10px; color: #555;">
+        Resize the browser window below <strong>768px</strong> to see the media query stack all areas into a single column.
+      </p>
+    </main>
+    <section class="widget-a">Widget A (Stats)</section>
+    <section class="widget-b">Widget B (Recent Activity)</section>
+    <footer class="footer">Dashboard Footer &copy; 2026 &bull; Ahsan Choudhry (24-SE-80)</footer>
+  </div>
+
+</body>
+</html>

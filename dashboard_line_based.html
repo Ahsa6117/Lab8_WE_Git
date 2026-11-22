@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Line-Based Spanning - Approach 2 | Web Engineering Lab 08</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 20px;
+    }
+    .top-nav {
+      margin-bottom: 20px;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-nav a {
+      color: #003366;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .top-nav a:hover {
+      text-decoration: underline;
+    }
+    /* Desktop Line-Based Layout (Pages 7-8) */
+    .dashboard-container {
+      display: grid;
+      grid-template-columns: 240px 1fr 1fr;
+      grid-template-rows: 70px minmax(300px, auto) 180px 50px;
+      gap: 15px;
+    }
+    /* Approach 2: Grid Lines and Spanning */
+    .header {
+      grid-column: 1 / 4;
+      background: #003366;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-radius: 6px;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    .sidebar {
+      grid-column: 1 / 2;
+      grid-row: 2 / 4;
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .main-content {
+      grid-column: 2 / 4;
+      background: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    .widget-a {
+      grid-column: 2 / 3;
+      background: #e3f2fd;
+      padding: 20px;
+      border: 1px solid #bbdefb;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .widget-b {
+      grid-column: 3 / 4;
+      background: #e8f5e9;
+      padding: 20px;
+      border: 1px solid #c8e6c9;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .footer {
+      grid-column: 1 / 4;
+      background: #333333;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      border-radius: 6px;
+    }
+    /* Mobile Breakpoint for Line-Based Layout */
+    @media (max-width: 768px) {
+      .dashboard-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+      .header, .sidebar, .main-content, .widget-a, .widget-b, .footer {
+        grid-column: 1 / 2;
+        grid-row: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-nav">
+    <div>
+      <strong>Web Engineering Lab 08:</strong> Approach 2 (Grid Lines &amp; Spanning - Pages 7-8)
+    </div>
+    <div>
+      <a href="dashboard.html">&larr; View Approach 1 (Named Areas)</a> |
+      <a href="Ecommerce_header.html">Back to Lab Task 1 (E-Commerce Gallery) &rarr;</a>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    <header class="header">Header &amp; Navbar (grid-column: 1 / 4)</header>
+    <aside class="sidebar">Sidebar Navigation (grid-column: 1 / 2; grid-row: 2 / 4)</aside>
+    <main class="main-content">
+      <h2>Main Analytics Content Area (grid-column: 2 / 4)</h2>
+      <p style="margin-top: 10px; color: #555;">
+        This implementation demonstrates <strong>Approach 2: Line-Based Positioning &amp; Spanning</strong>.
+        Instead of named template areas, line numbers are used directly (e.g. <code>grid-column: 1 / 4</code> for full-width elements).
+      </p>
+    </main>
+    <section class="widget-a">Widget A (Stats) [grid-column: 2 / 3]</section>
+    <section class="widget-b">Widget B (Recent Activity) [grid-column: 3 / 4]</section>
+    <footer class="footer">Dashboard Footer &copy; 2026 (grid-column: 1 / 4)</footer>
+  </div>
+
+</body>
+</html>

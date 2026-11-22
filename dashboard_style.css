@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  padding: 20px;
+}
+
+/* Navigation banner to return to E-commerce store */
+.top-nav {
+  margin-bottom: 20px;
+  background: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-nav a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+/* Desktop Grid Layout (Exercise 1 - Page 3) */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 1fr;
+  grid-template-rows: 70px minmax(300px, auto) 180px 50px;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "sidebar widget-a widget-b"
+    "footer footer footer";
+  gap: 15px;
+}
+
+.header {
+  grid-area: header;
+  background: #003366;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.main-content {
+  grid-area: main;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.widget-a {
+  grid-area: widget-a;
+  background: #e3f2fd;
+  padding: 20px;
+  border: 1px solid #bbdefb;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.widget-b {
+  grid-area: widget-b;
+  background: #e8f5e9;
+  padding: 20px;
+  border: 1px solid #c8e6c9;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.footer {
+  grid-area: footer;
+  background: #333333;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 6px;
+}
+
+/* Mobile Responsive Breakpoint (Exercise 1 - Page 4) */
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main"
+      "widget-a"
+      "widget-b"
+      "footer";
+  }
+}

@@ -1,0 +1,12 @@
+# Dependencies and OS artifacts
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Editor configurations
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
