@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 1 Approach 2: Grid Lines & Spanning | Web Engineering Lab 08</title>
+  <!-- Linked to 2nd Style Sheet as taught on Lab Manual Page 7 -->
+  <link rel="stylesheet" href="style2.css">
+  <style>
+    .notes-box {
+      margin-top: 20px;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .notes-box code {
+      background: #edf2f7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #003366;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <div class="top-nav">
+    <div>
+      <strong>Web Engineering Lab 08:</strong> Exercise 1 &mdash; Approach 2 (Grid Lines and Spanning, Pages 7–8)
+    </div>
+    <div>
+      <a href="index.html">&larr; Back to Main Portal</a> |
+      <a href="Exercise1_Dashboard.html">&larr; View Approach 1 (Named Areas)</a> |
+      <a href="Ecommerce_header.html">Open Lab Task 1 (Product Gallery) &rarr;</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Exercise 1 Approach 2: Numerical Line-Based Coordinates (Pages 7–8)
+       ========================================================================= -->
+  <div class="dashboard-container">
+    <header class="header">Header &amp; Navbar (grid-column: 1 / 4)</header>
+    <aside class="sidebar">Sidebar Navigation (grid-column: 1 / 2; grid-row: 2 / 4)</aside>
+    <main class="main-content">
+      <h2>Main Analytics Content Area (grid-column: 2 / 4)</h2>
+      <p style="margin-top: 10px; color: #475569;">
+        This layout demonstrates <strong>Approach 2: Line-Based Positioning and Spanning</strong> using
+        <code>style2.css</code>. Instead of declaring named regions in <code>grid-template-areas</code>,
+        each child element directly targets start and end grid line numbers.
+      </p>
+      <ul style="margin: 12px 0 12px 24px; color: #334155;">
+        <li><code>.header { grid-column: 1 / 4; }</code> &mdash; Spans across all 3 column tracks.</li>
+        <li><code>.sidebar { grid-column: 1 / 2; grid-row: 2 / 4; }</code> &mdash; Spans 2 row tracks vertically.</li>
+        <li><code>.main-content { grid-column: 2 / 4; }</code> &mdash; Spans columns 2 and 3.</li>
+        <li><code>.widget-a { grid-column: 2 / 3; }</code> &amp; <code>.widget-b { grid-column: 3 / 4; }</code></li>
+        <li><code>.footer { grid-column: 1 / 4; }</code> &mdash; Full width bottom track.</li>
+      </ul>
+    </main>
+    <section class="widget-a">Widget A (Stats) [grid-column: 2 / 3]</section>
+    <section class="widget-b">Widget B (Recent Activity) [grid-column: 3 / 4]</section>
+    <footer class="footer">Dashboard Footer &copy; 2026 &bull; Ahsan Choudhry (24-SE-80)</footer>
+  </div>
+
+  <!-- Manual Notes (From Page 8) -->
+  <div class="notes-box">
+    <h3 style="color: #003366; margin-bottom: 8px;">📝 Notes on Both Approaches (Lab Manual Page 8):</h3>
+    <ul style="margin-left: 20px; color: #334155;">
+      <li>If using <strong><code>grid-template-areas</code></strong> &rarr; usually use <code>grid-area</code> only.</li>
+      <li>If using <strong>line-based positioning</strong> &rarr; use <code>grid-column</code> and <code>grid-row</code>.</li>
+      <li>Mixing both is allowed, but typically not required.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

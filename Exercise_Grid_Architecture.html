@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part A: CSS Grid Architecture & Calculations | Web Engineering Lab 08</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      padding: 24px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .header-banner {
+      background: linear-gradient(135deg, #003366 0%, #1e3a8a 100%);
+      color: white;
+      padding: 24px 30px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .header-banner h1 {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+    .header-banner p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+    .nav-links a {
+      color: #93c5fd;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 14px;
+    }
+    .nav-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .card h2 {
+      font-size: 1.3rem;
+      color: #003366;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+    .math-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .math-table th, .math-table td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .math-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .calc-box {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: 14px;
+      font-family: monospace;
+      font-size: 0.95rem;
+    }
+    .slider-wrap {
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #f1f5f9;
+      padding: 14px 20px;
+      border-radius: 8px;
+    }
+    .slider-wrap input[type=range] {
+      flex: 1;
+      cursor: pointer;
+    }
+    .live-demo-grid {
+      display: grid;
+      gap: 12px;
+      background: #e2e8f0;
+      padding: 14px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      margin-top: 14px;
+    }
+    .grid-col {
+      background: #2563eb;
+      color: white;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 700;
+    }
+    .col-fixed { background: #0f172a; }
+    .col-fr1 { background: #2563eb; }
+    .col-fr2 { background: #0284c7; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-banner">
+      <div>
+        <h1>Part A: CSS Grid Layout Architecture &amp; Calculations</h1>
+        <p>Lab Manual Reference: Pages 2, 5, 6 &amp; 7 &bull; Student: Ahsan Choudhry (24-SE-80)</p>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">&larr; Main Portal</a>
+        <a href="Exercise1_Dashboard.html">Exercise 1</a>
+        <a href="Ecommerce_header.html">Lab Task 1</a>
+      </div>
+    </div>
+
+    <!-- 1. Track Definitions & Fractional Units (Pages 5-6) -->
+    <div class="card">
+      <h2>1. Fractional Unit (fr) &amp; Available Width Math (Page 5–6)</h2>
+      <p>Rule: <code>grid-template-columns: 240px 1fr 1fr;</code> defines three columns.</p>
+      
+      <table class="math-table">
+        <thead>
+          <tr>
+            <th>Column</th>
+            <th>Declared Width</th>
+            <th>Calculated Size Formula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Column 1</strong></td>
+            <td>240px (Fixed)</td>
+            <td>Constant <code>240px</code></td>
+          </tr>
+          <tr>
+            <td><strong>Column 2</strong></td>
+            <td>1fr (Fractional)</td>
+            <td><code>(Available Container Width - 240px - Gaps) / 2</code></td>
+          </tr>
+          <tr>
+            <td><strong>Column 3</strong></td>
+            <td>1fr (Fractional)</td>
+            <td><code>(Available Container Width - 240px - Gaps) / 2</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Interactive Calculator Slider -->
+      <div class="slider-wrap">
+        <label for="widthRange"><strong>Available Width Simulator:</strong></label>
+        <input type="range" id="widthRange" min="600" max="1400" value="1000" step="10">
+        <span id="widthValue" style="font-weight: bold; color: #2563eb; min-width: 80px;">1000px</span>
+      </div>
+
+      <div class="calc-box" id="calcResults">
+        Total Available Width = 1000px<br>
+        Column 1 (Fixed)      = 240px<br>
+        Remaining Width       = 1000px - 240px = 760px<br>
+        Column 2 (1fr)        = 760px / 2 = 380px<br>
+        Column 3 (1fr)        = 760px / 2 = 380px
+      </div>
+
+      <!-- Live Visualization -->
+      <div class="live-demo-grid" id="liveGrid" style="grid-template-columns: 240px 1fr 1fr; max-width: 1000px;">
+        <div class="grid-col col-fixed" id="box1">Col 1: 240px</div>
+        <div class="grid-col col-fr1" id="box2">Col 2: 380px</div>
+        <div class="grid-col col-fr2" id="box3">Col 3: 380px</div>
+      </div>
+    </div>
+
+    <!-- 2. minmax() Row Calculations (Page 6) -->
+    <div class="card">
+      <h2>2. Dynamic Row Sizing: <code>minmax(300px, auto)</code> (Page 6)</h2>
+      <p>Rule: <code>grid-template-rows: 70px minmax(300px, auto) 180px 50px;</code></p>
+      <ul style="margin: 12px 0 12px 24px; color: #334155;">
+        <li>Row height can <strong>never be less than 300px</strong>.</li>
+        <li>It can <strong>grow beyond 300px</strong> if content requires more space.</li>
+      </ul>
+
+      <table class="math-table">
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Content Height</th>
+            <th>Resulting Computed Row Height</th>
+            <th>Reasoning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Scenario A</td>
+            <td>250px</td>
+            <td><strong style="color: #2563eb;">300px</strong></td>
+            <td>250px is less than 300px minimum bound &rarr; clamped to 300px.</td>
+          </tr>
+          <tr>
+            <td>Scenario B</td>
+            <td>500px</td>
+            <td><strong style="color: #10b981;">500px</strong></td>
+            <td>500px exceeds 300px minimum &rarr; expands dynamically via <code>auto</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3. Gutter Control & Auto-Fit (Page 7 & Page 16) -->
+    <div class="card">
+      <h2>3. Auto-Fit vs Auto-Fill &amp; Gutter Control (Page 7 &amp; 16)</h2>
+      <p>
+        In Lab Task 1, <code>repeat(auto-fit, minmax(250px, 1fr))</code> dynamically creates as many columns as will fit.
+        Because <code>auto-fit</code> collapses empty tracks to 0px, all items stretch naturally across the viewport width.
+      </p>
+      <div class="calc-box" style="margin-top: 14px;">
+        [Item 1] <span style="color: #2563eb;">&lt;-- 15px gap --&gt;</span> [Item 2] <span style="color: #2563eb;">&lt;-- 15px gap --&gt;</span> [Item 3]<br>
+        gap: 15px adds 15px gutter space between rows and columns without adding margin to outer borders.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const widthRange = document.getElementById('widthRange');
+    const widthValue = document.getElementById('widthValue');
+    const calcResults = document.getElementById('calcResults');
+    const liveGrid = document.getElementById('liveGrid');
+    const box2 = document.getElementById('box2');
+    const box3 = document.getElementById('box3');
+
+    widthRange.addEventListener('input', (e) => {
+      const w = parseInt(e.target.value);
+      widthValue.textContent = w + 'px';
+      liveGrid.style.maxWidth = w + 'px';
+      
+      const fixed = 240;
+      const gap = 24; // 2 gaps of 12px
+      const remaining = w - fixed - gap;
+      const frVal = Math.max(80, Math.round(remaining / 2));
+      
+      calcResults.innerHTML = `
+        Total Available Width = ${w}px<br>
+        Column 1 (Fixed)      = 240px<br>
+        Remaining Width       = ${w}px - 240px - 24px(gaps) = ${remaining}px<br>
+        Column 2 (1fr)        = ${remaining}px / 2 = ~${frVal}px<br>
+        Column 3 (1fr)        = ${remaining}px / 2 = ~${frVal}px
+      `;
+      box2.textContent = `Col 2: ~${frVal}px`;
+      box3.textContent = `Col 3: ~${frVal}px`;
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 1: Responsive Dashboard Layout with CSS Grid | Web Engineering Lab 08</title>
+  <link rel="stylesheet" href="dashboard_style.css">
+  <style>
+    .math-info {
+      margin-top: 20px;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .math-info code {
+      background: #edf2f7;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #003366;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <div class="top-nav">
+    <div>
+      <strong>Web Engineering Lab 08:</strong> In-Lab Guided Exercise 1 (Grid Template Areas)
+    </div>
+    <div>
+      <a href="index.html">&larr; Back to Main Portal</a> |
+      <a href="Exercise1_Approach2_LineBased.html">View Approach 2 (Grid Lines) &rarr;</a> |
+      <a href="Ecommerce_header.html">Open Lab Task 1 (Product Gallery) &rarr;</a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Exercise 1 HTML Structure (As specified on Lab Manual Pages 2–3)
+       ========================================================================= -->
+  <div class="dashboard-container">
+    <header class="header">Header &amp; Navbar</header>
+    <aside class="sidebar">Sidebar Navigation</aside>
+    <main class="main-content">
+      <h2>Main Analytics Content Area</h2>
+      <p style="margin-top: 10px; color: #475569;">
+        This responsive dashboard layout is built using <strong>CSS Grid Template Areas</strong>.
+        The layout defines 3 columns and 4 rows:
+      </p>
+      <ul style="margin: 12px 0 12px 24px; color: #334155;">
+        <li><code>grid-template-columns: 240px 1fr 1fr;</code></li>
+        <li><code>grid-template-rows: 70px minmax(300px, auto) 180px 50px;</code></li>
+        <li><code>gap: 15px;</code></li>
+      </ul>
+      <p style="color: #475569;">
+        Resize the viewport below <strong>768px</strong> to observe the <code>@media (max-width: 768px)</code>
+        breakpoint reorganizing all regions into a single column.
+      </p>
+    </main>
+    <section class="widget-a">Widget A (Stats)</section>
+    <section class="widget-b">Widget B (Recent Activity)</section>
+    <footer class="footer">Dashboard Footer &copy; 2026 &bull; Ahsan Choudhry (24-SE-80)</footer>
+  </div>
+
+  <!-- Mathematical & Architectural Breakdown (From Pages 5-7) -->
+  <div class="math-info">
+    <h3 style="color: #003366; margin-bottom: 8px;">📐 Architectural &amp; Mathematical Calculations (Pages 5–6):</h3>
+    <p>
+      <strong>1. Column Track Calculations:</strong> If available container width is <code>1000px</code>:<br>
+      Fixed Sidebar: <code>240px</code> &bull; Remaining width: $1000\text{px} - 240\text{px} = 760\text{px}$ &bull;
+      Column 2 (<code>1fr</code>): $760 / 2 = 380\text{px}$ &bull; Column 3 (<code>1fr</code>): $760 / 2 = 380\text{px}$.
+    </p>
+    <p style="margin-top: 8px;">
+      <strong>2. Row Height minmax(300px, auto):</strong> If content is <code>250px</code>, row height remains at minimum <code>300px</code>.
+      If content expands to <code>500px</code>, row height grows dynamically to <code>500px</code>.
+    </p>
+  </div>
+
+</body>
+</html>

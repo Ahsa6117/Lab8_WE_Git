@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Web Engineering - Laboratory # 08
+   Exercise 1: Approach 2 (2nd Style Sheet with Grid-column and Grid-row)
+   University of Engineering and Technology (UET) Taxila
+   Course Instructor: Engr. Sidra Shafi
+   Student: Ahsan Choudhry (24-SE-80)
+   Reference: Lab Manual Pages 7–8
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+  padding: 20px;
+}
+
+.top-nav {
+  margin-bottom: 20px;
+  background: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.top-nav a {
+  color: #003366;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   Desktop Grid Layout using Numerical Grid Lines and Spanning (Pages 7-8)
+   -------------------------------------------------------------------------- */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 240px 1fr 1fr;
+  grid-template-rows: 70px minmax(300px, auto) 180px 50px;
+  gap: 15px;
+}
+
+/* Header spans column line 1 to 4 across row 1 */
+.header {
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;
+  background: #003366;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Sidebar occupies column 1, spanning row lines 2 to 4 */
+.sidebar {
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Main Analytics Content Area spans columns 2 to 4 across row 2 */
+.main-content {
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* Widget A occupies column 2 to 3 on row 3 */
+.widget-a {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  background: #e3f2fd;
+  padding: 20px;
+  border: 1px solid #bbdefb;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Widget B occupies column 3 to 4 on row 3 */
+.widget-b {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+  background: #e8f5e9;
+  padding: 20px;
+  border: 1px solid #c8e6c9;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* Footer spans column line 1 to 4 across row 4 */
+.footer {
+  grid-column: 1 / 4;
+  grid-row: 4 / 5;
+  background: #333333;
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsive Breakpoint for Line-Based Layout
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .header, .sidebar, .main-content, .widget-a, .widget-b, .footer {
+    grid-column: 1 / 2;
+    grid-row: auto;
+  }
+}
